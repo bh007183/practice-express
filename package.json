@@ -1,0 +1,24 @@
+{
+  "name": "practice-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bh007183/practice-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bh007183/practice-express/issues"
+  },
+  "homepage": "https://github.com/bh007183/practice-express#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

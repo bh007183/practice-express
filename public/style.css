@@ -1,0 +1,17 @@
+* {
+    margin: 0%;
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+}
+.header{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 5vw;
+    background-color: rgb(39, 39, 39);
+    color: honeydew;
+    font-size: 2rem;
+}
