@@ -17,8 +17,9 @@ app.get('/', function(request, response){
 app.post("/api/data", function(req, res){
     fs.readFile(path.join(__dirname, "/jb.json"), "utf8", function(err, data){
      if (err) throw err
+     res.json(req.body)
      const statData = JSON.parse(data)
-     statData.push(request.body)
+     statData.push(req.body)
      fs.writeFile(path.join(__dirname, "/jb.json"), JSON.stringify(statData), (err)=>{
          if(err) throw err
      })
@@ -27,8 +28,8 @@ app.post("/api/data", function(req, res){
 })
 
 app.get('/api/data', function(req, res){
-    fs.readFile(path.join(__dirname, "/index.html"), "utf8", (err, data) => {
-        response.json(request.body)
+    fs.readFile(path.join(__dirname, "/jb.json"), "utf8", (err, data) => {
+        res.json(data)
     })
 })
 
