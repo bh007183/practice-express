@@ -17,8 +17,13 @@ app.get('/', function(request, response){
 app.post("/api/data", function(req, res){
     fs.readFile(path.join(__dirname, "/jb.json"), "utf8", function(err, data){
      if (err) throw err
+     /////////////////
      res.json(req.body)
+     /////////////////
      const statData = JSON.parse(data)
+     for(let i = 0; i < statData.length; i++){
+         statData[i].id = i
+     }
      statData.push(req.body)
      fs.writeFile(path.join(__dirname, "/jb.json"), JSON.stringify(statData), (err)=>{
          if(err) throw err
@@ -26,13 +31,18 @@ app.post("/api/data", function(req, res){
      
     })
 })
-
+//////////////////////////////////////////////////
 app.get('/api/data', function(req, res){
     fs.readFile(path.join(__dirname, "/jb.json"), "utf8", (err, data) => {
         res.json(data)
     })
 })
+//////////////////////////////////////////////////
+app.delete('/api/data/:id', function(req, res){
+    fs.readFile(path.join(__dirname, "/jb.json"), "utf8", (err, data) => {
 
+    })
+})
 
 app.listen(PORT, () => {
     console.log(`Example app listening at http://localhost:${PORT}`)

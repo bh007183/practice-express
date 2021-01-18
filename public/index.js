@@ -14,7 +14,8 @@ $(".enter").on("click", function(event){
         success: function(){
             $(".container").append(
             `<div class="card">
-            <div class="title">${data.title}</div>
+            <i class="fas fa-trash"></i>
+            <div class="title" >${data.title}</div>
             <div class="where">${data.where}</div>
             <div class="when">${data.when}</div>
         </div>`
@@ -34,6 +35,7 @@ $(".enter").on("click", function(event){
         for(let i = 0; i < dataParsed.length; i++){
             $(".container").append(
                 `<div class="card">
+                <i class="fas fa-trash"></i>
                 <div class="title">${dataParsed[i].title}</div>
                 <div class="where">${dataParsed[i].where}</div>
                 <div class="when">${dataParsed[i].when}</div>
@@ -42,6 +44,13 @@ $(".enter").on("click", function(event){
     }  
    
     })  
+})
+
+$("i").on("click", function(event){
+    $ajax({
+        url: "/api/data",
+        method:"DELETE"
+    })
 })
 
 
