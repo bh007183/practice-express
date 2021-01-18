@@ -21,10 +21,10 @@ app.post("/api/data", function(req, res){
      res.json(req.body)
      /////////////////
      const statData = JSON.parse(data)
+     statData.push(req.body)
      for(let i = 0; i < statData.length; i++){
          statData[i].id = i
-     }
-     statData.push(req.body)
+     } 
      fs.writeFile(path.join(__dirname, "/jb.json"), JSON.stringify(statData), (err)=>{
          if(err) throw err
      })
@@ -40,7 +40,18 @@ app.get('/api/data', function(req, res){
 //////////////////////////////////////////////////
 app.delete('/api/data/:id', function(req, res){
     fs.readFile(path.join(__dirname, "/jb.json"), "utf8", (err, data) => {
+        if (err) throw err
 
+     const statData = JSON.parse(data)
+     const id = request.params.id
+     for(let i = 0; i < statData.length; i++){
+        if(statData[i].id === id){
+            statData.splice(statData[i], 1)
+        }
+     } 
+     fs.writeFile(path.join(__dirname, "/jb.json"),JSON.stringify(statData), (err)=>{
+         if (err) throw err
+     } )
     })
 })
 

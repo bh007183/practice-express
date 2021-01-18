@@ -1,3 +1,37 @@
+function read (){
+    $.ajax({
+        url: "/api/data",
+        method: "GET"
+        
+    }).then(function(data){
+        const dataParsed = JSON.parse(data)
+        for(let i = 0; i < dataParsed.length; i++){
+            $(".container").append(
+                `<div class="card">
+                <button class="button" id="button"><i class="fas fa-trash"></i></button>
+                <div class="title">${dataParsed[i].title}</div>
+                <div class="where">${dataParsed[i].where}</div>
+                <div class="when">${dataParsed[i].when}</div>
+            </div>`
+        )
+    }  
+   
+    })  }
+read()
+$(".button").on("click", function(){
+    console.log("test")
+    // $ajax({
+    //     url: "/api/data/" + id,
+    //     method:"DELETE"
+    // })
+})
+
+// const button = document.getElementById("button")
+// button.addEventListener("click", () => {
+//     console.log("hello")
+// })
+
+
 $(".enter").on("click", function(event){
     event.preventDefault()
     $(".container").empty()
@@ -12,7 +46,7 @@ $(".enter").on("click", function(event){
         method: "POST",
         data: data,
         success: function(){
-            $(".container").append(
+            $(".container").prepend(
             `<div class="card">
             <i class="fas fa-trash"></i>
             <div class="title" >${data.title}</div>
@@ -25,33 +59,11 @@ $(".enter").on("click", function(event){
         $(".input-where").val(""),
         $(".input-when").val("")
     })
-
-    $.ajax({
-        url: "/api/data",
-        method: "GET"
-        
-    }).then(function(data){
-        const dataParsed = JSON.parse(data)
-        for(let i = 0; i < dataParsed.length; i++){
-            $(".container").append(
-                `<div class="card">
-                <i class="fas fa-trash"></i>
-                <div class="title">${dataParsed[i].title}</div>
-                <div class="where">${dataParsed[i].where}</div>
-                <div class="when">${dataParsed[i].when}</div>
-            </div>`
-        )
-    }  
-   
-    })  
+    read()
+    
 })
 
-$("i").on("click", function(event){
-    $ajax({
-        url: "/api/data",
-        method:"DELETE"
-    })
-})
+
 
 
 const disco = setInterval(function(){
